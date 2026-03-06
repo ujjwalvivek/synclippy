@@ -10,6 +10,7 @@
   import Toolbar from "./components/top-bar.svelte";
   import StatusBar from "./components/status-bar.svelte";
   import RoomExpired from "./components/room-expire.svelte";
+  import RoomError from "./components/room-error.svelte";
   import {
     apiCreateRoom,
     apiLoadNote,
@@ -197,6 +198,7 @@
   // store cleanup function for the current room so it can be invoked when
   // the component unmounts.
   let roomCleanup: (() => void) | null = null;
+  let roomError: string | null = null;
   onDestroy(() => roomCleanup?.());
 
   // incoming clipboard:share messages are written to the local system clipboard
@@ -214,6 +216,8 @@
     // start the room initiation flow once component is mounted
     initRoom().then((cleanup) => {
       roomCleanup = cleanup;
+    }).catch((err) => {
+      roomError = err?.message ?? 'Failed to start room';
     });
   });
 
@@ -262,6 +266,8 @@
 
 {#if roomExpired}
   <RoomExpired on:newRoom={handleCreateNewRoom} />
+{:else if roomError}
+  <RoomError on:newRoom={handleCreateNewRoom} />
 {:else if roomReady}
   <div
     class="h-screen flex flex-col bg-background text-foreground font-mono overflow-hidden"

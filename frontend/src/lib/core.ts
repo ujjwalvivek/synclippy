@@ -5,7 +5,11 @@ const KEY = 'synclippy_note'
 
 // External backend URL -> empty means same-origin (self-hosted binary/Docker).
 // Set VITE_API_BASE at build time for Cloudflare Pages deployments.
-const BASE = (import.meta.env.VITE_API_BASE ?? '').replace(/\/$/, '')
+let rawBase = import.meta.env.VITE_API_BASE ?? '';
+if (rawBase === '""' || rawBase === "''") {
+  rawBase = '';
+}
+const BASE = rawBase.replace(/\/$/, '');
 
 // internal handler signatures used by WSClient
 type MessageHandler = (msg: WSMessage) => void
@@ -45,7 +49,10 @@ export type WSMessage =
 // network failures or propagate backend error messages exactly as they are.
 export async function apiCreateRoom(): Promise<{ roomId: string; expiresAt: number }> {
   const res = await fetch(`${BASE}/api/room/new`, { credentials: 'include' })
-  if (!res.ok) throw new Error('Failed to create room')
+  if (!res.ok) {
+    const body = await res.text().catch(() => '')
+    throw new Error(`Failed to create room (${res.status}${body ? ': ' + body.slice(0, 120) : ''})`)
+  }
   return res.json()
 }
 

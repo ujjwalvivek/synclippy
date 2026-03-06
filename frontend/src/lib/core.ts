@@ -5,11 +5,7 @@ const KEY = 'synclippy_note'
 
 // External backend URL -> empty means same-origin (self-hosted binary/Docker).
 // Set VITE_API_BASE at build time for Cloudflare Pages deployments.
-let rawBase = import.meta.env.VITE_API_BASE ?? '';
-if (rawBase === '""' || rawBase === "''") {
-  rawBase = '';
-}
-const BASE = rawBase.replace(/\/$/, '');
+const BASE = (import.meta.env.VITE_API_BASE ?? '').replace(/\/$/, '')
 
 // internal handler signatures used by WSClient
 type MessageHandler = (msg: WSMessage) => void

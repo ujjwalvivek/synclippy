@@ -92,8 +92,6 @@
       const e = err as { code?: string };
       if (e?.code === "room_expired") {
         roomExpired = true;
-        wsClient.destroy();
-        wsReady = false;
         return;
       }
       const local = storageLoad();
@@ -125,17 +123,8 @@
     const pathRoom = window.location.pathname.replace(/^\//, "").trim();
 
     if (pathRoom && /^[a-z]+-[a-z]+-[a-z]+$/.test(pathRoom)) {
-      // validate a room exists beforehand
+      // Visiting an existing room URL
       roomId = pathRoom;
-      try {
-        await apiLoadNote(roomId);
-      } catch (err: unknown) {
-        const e = err as { code?: string };
-        if (e?.code === "room_expired") {
-          roomExpired = true;
-          return () => {};
-        }
-      }
     } else {
       const data = await apiCreateRoom();
       roomId = data.roomId;

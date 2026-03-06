@@ -7,7 +7,7 @@ COPY frontend/ ./
 RUN npm run build
 
 # Build: Backend
-FROM golang:1.23-alpine AS builder
+FROM golang:1.26-alpine AS builder
 WORKDIR /app/backend
 # Copy Go module files first for layer caching
 COPY backend/go.mod backend/go.sum ./
@@ -18,7 +18,7 @@ COPY --from=frontend /app/frontend/dist ./dist
 RUN CGO_ENABLED=0 go build -trimpath -ldflags="-s -w" -o /server .
 
 # Minimal runtime image
-FROM alpine:3.20
+FROM alpine:3.21
 RUN apk add --no-cache ca-certificates
 COPY --from=builder /server /server
 EXPOSE 8080

@@ -2,7 +2,7 @@ name = "synclippy"
 main = "src/index.ts"
 compatibility_date = "2025-01-01"
 routes = [
-  { pattern = "synclippy.ujjwalvivek.com/*", custom_domain = true }
+  { pattern = "synclippy.ujjwalvivek.com", custom_domain = true }
 ]
 
 # copied from frontend/dist in CI before deploy

@@ -49,7 +49,12 @@ export async function apiCreateRoom(): Promise<{ roomId: string; expiresAt: numb
     const body = await res.text().catch(() => '')
     throw new Error(`Failed to create room (${res.status}${body ? ': ' + body.slice(0, 120) : ''})`)
   }
-  return res.json()
+  const text = await res.text()
+  try {
+    return JSON.parse(text)
+  } catch {
+    throw new Error('Server returned an invalid response. Is the API backend running?')
+  }
 }
 
 export async function apiLoadNote(roomId: string): Promise<string> {

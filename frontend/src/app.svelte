@@ -256,11 +256,16 @@
     if (file) uploadFile(file);
   }
 
-  // invoked when the expired-room screen requests a new session
+  // invoked when the expired-room or error screen requests a new session
   async function handleCreateNewRoom() {
-    const data = await apiCreateRoom();
-    history.pushState({}, "", "/" + data.roomId);
-    window.location.reload();
+    try {
+      roomError = null;
+      const data = await apiCreateRoom();
+      history.pushState({}, "", "/" + data.roomId);
+      window.location.reload();
+    } catch (err: any) {
+      roomError = err?.message ?? "Failed to create room";
+    }
   }
 </script>
 

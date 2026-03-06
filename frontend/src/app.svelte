@@ -258,11 +258,29 @@
 
   // invoked when the expired-room or error screen requests a new session
   async function handleCreateNewRoom() {
+    // tear down any previous room state
+    roomCleanup?.();
+    roomCleanup = null;
+    wsClient.destroy();
+
+    // reset every piece of room-related state
+    roomError = null;
+    roomExpired = false;
+    roomReady = false;
+    roomId = "";
+    roomExpiresAt = 0;
+    wsReady = false;
+    files = [];
+    noteLoaded = false;
+    isNewRoom = false;
+
+    // reset URL so initRoom creates a fresh room instead of rejoining the old one
+    history.pushState({}, "", "/");
+
+    // re-run initRoom which will create a fresh room
     try {
-      roomError = null;
-      const data = await apiCreateRoom();
-      history.pushState({}, "", "/" + data.roomId);
-      window.location.reload();
+      const cleanup = await initRoom();
+      roomCleanup = cleanup;
     } catch (err: any) {
       roomError = err?.message ?? "Failed to create room";
     }

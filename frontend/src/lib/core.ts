@@ -201,7 +201,10 @@ class WSClient {
   destroy() {
     // clean up and prevent further reconnect attempts
     if (this.reconnectTimer) clearTimeout(this.reconnectTimer)
+    this.reconnectTimer = null
     this.roomId = ''
+    this.retryCount = 0
+    this._ready = false
     this.ws?.close()
   }
 }

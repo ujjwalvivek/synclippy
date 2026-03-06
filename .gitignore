@@ -33,6 +33,7 @@ notepad-dist/
 backend/server
 backend/server-macos
 backend/dist/
+backend/package-lock.json
 
 # Cloudflare Worker
 .wrangler/

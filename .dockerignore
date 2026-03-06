@@ -1,0 +1,22 @@
+# Editor/OS files
+.git
+.github
+.vscode
+.wrangler
+
+# Synclippy build artifacts
+backend/server
+backend/server.exe
+backend/dist
+
+# Frontend build artifacts
+frontend/node_modules
+frontend/.svelte-kit
+
+# Worker build artifacts
+worker/node_modules
+worker/public
+
+# Misc
+*.md
+*.sh

@@ -1,0 +1,18 @@
+{
+    "css.lint.unknownAtRules": "ignore",
+    "json.schemaDownload.enable": true,
+    "files.exclude": {
+        "**/node_modules": true,
+        "**/dist": true,
+        "**/*-lock.json": true,
+        "**/backend/server": true,
+        "**/backend/server.exe": true
+    },
+    "files.watcherExclude": {
+        "**/node_modules/**": true,
+        "**/dist/**": true,
+        "**/*-lock.json": true,
+        "**/backend/server": true,
+        "**/backend/server.exe": true
+    }
+}

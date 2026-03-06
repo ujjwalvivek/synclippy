@@ -21,7 +21,6 @@ logs/
 *.local
 
 # Editor/OS files
-.vscode/
 .DS_Store
 Thumbs.db
 
@@ -29,6 +28,23 @@ Thumbs.db
 dist/
 build/
 notepad-dist/
+
+# Synclippy build artifacts
+backend/server
+backend/server-macos
+backend/dist/
+
+# Cloudflare Worker
+.wrangler/
+worker/public/
+backend/dist/
+backend/server
+backend/server.exe
+worker/node_modules
+
+# Frontend build artifacts
+frontend/node_modules
+frontend/.svelte-kit
 
 # Misc
 functions/node_modules/

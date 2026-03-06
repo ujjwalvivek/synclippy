@@ -1,7 +1,5 @@
-module scratchpad-backend
+module synclippy
 
-go 1.24.5
+go 1.23
 
-require (
-    github.com/gorilla/websocket v1.5.3
-)
+require github.com/gorilla/websocket v1.5.3

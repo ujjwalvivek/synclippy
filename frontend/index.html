@@ -1,51 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" class="dark">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport"
-    content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
-  <title>CrossDevice Clipboard</title>
-  <link rel="stylesheet" href="index.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+  <link rel="icon" type="image/png" href="/favicon.webp" />
+  <title>Synclippy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
 </head>
-
-<body>
-  <div class="container">
-    <header>
-      <h1>Hi Vivek!</h1>
-      <div class="toolbar">
-        <button id="syncClipboardBtn" title="Sync and Paste Clipboard"
-          style="display:flex;align-items:center;gap:0.5em;">
-          <!-- Heroicons: Arrow Path (Sync) -->
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-            stroke="currentColor" style="width:1.2em;height:1.2em;vertical-align:middle;">
-            <path stroke-linecap="round" stroke-linejoin="round"
-              d="M4.5 12a7.5 7.5 0 0113.5-5.25M19.5 12a7.5 7.5 0 01-13.5 5.25M19.5 4.5v5.25a.75.75 0 01-.75.75H13.5M4.5 19.5v-5.25a.75.75 0 01.75-.75H10.5" />
-          </svg>
-          Sync
-        </button>
-      </div>
-    </header>
-    <div class="palette-hint" onclick="openCommandPalette()">
-      Command Palette (<b>Ctrl</b>/<b>Cmd</b>+<b>Shift</b>+<b>P</b>)
-    </div>
-    <main>
-      <textarea id="editor" spellcheck="true"></textarea>
-      <div id="clipboardPopup" class="clipboard-popup" style="display:none;">
-        <div class="popup-content">
-          <div id="clipboardText"></div>
-          <button id="insertClipboardBtn">Insert</button>
-          <button id="closeClipboardBtn">Close</button>
-        </div>
-      </div>
-      <div id="commandPalette" class="command-palette" style="display:none;">
-        <ul id="commandList" class="command-list"></ul>
-      </div>
-    </main>
-    <footer>Auto-saved locally • Paste clipboard supported</footer>
-  </div>
-
-  <script type="module" src="index.js"></script>
+<body class="bg-background text-foreground font-mono overflow-hidden h-screen">
+  <div id="root"></div>
+  <script type="module" src="/src/main.ts"></script>
 </body>
-
 </html>

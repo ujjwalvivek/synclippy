@@ -1,0 +1,25 @@
+name = "synclippy"
+main = "src/index.ts"
+compatibility_date = "2025-01-01"
+routes = [
+  { pattern = "synclippy.ujjwalvivek.com/*", custom_domain = true }
+]
+
+# copied from frontend/dist in CI before deploy
+[assets]
+directory = "./public"
+binding = "ASSETS"
+
+# room class provides per-room state + WS
+[[durable_objects.bindings]]
+name = "ROOM"
+class_name = "Room"
+
+[[migrations]]
+tag = "v1"
+new_sqlite_classes = ["Room"]
+
+# bundle wordlist.txt as a text module
+[[rules]]
+type = "Text"
+globs = ["**/*.txt"]

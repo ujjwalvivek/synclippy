@@ -164,7 +164,16 @@ export default {
 
     // ? rolling cookie refresh on page loads
     const owner = await isOwner(request, env)
-    const res = await env.ASSETS.fetch(request)
+    let res = await env.ASSETS.fetch(request)
+
+    // ? SPA routing fallback: if asset not found and request accepts HTML or has no extension
+    if (res.status === 404 && request.method === 'GET') {
+      const accept = request.headers.get('Accept') || ''
+      if (accept.includes('text/html') || !path.includes('.')) {
+        res = await env.ASSETS.fetch(new Request(new URL('/', request.url), request))
+      }
+    }
+
     if (owner) {
       const cookieVal = await computeAuthCookie(env.OWNER_TOKEN)
       return withRollingCookie(res, cookieVal)

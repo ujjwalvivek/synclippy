@@ -1,5 +1,5 @@
 # Build: Frontend
-FROM node:20-alpine AS frontend
+FROM --platform=linux/amd64 node:20-alpine AS frontend
 WORKDIR /app/frontend
 COPY frontend/package.json frontend/package-lock.json* ./
 RUN npm ci --prefer-offline

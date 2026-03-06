@@ -84,8 +84,8 @@ export class Room extends DurableObject<Env> {
       return Response.json({ expiresAt: this.expiresAt })
     }
 
-    // ? room expired guard
-    if (this.expiresAt > 0 && Date.now() > this.expiresAt) {
+    // ? room expired or doesn't exist guard
+    if (this.expiresAt === 0 || (this.expiresAt > 0 && Date.now() > this.expiresAt)) {
       return Response.json(
         { error: 'room_expired' },
         { status: 404, headers: noStoreHeaders() }

@@ -92,6 +92,8 @@
       const e = err as { code?: string };
       if (e?.code === "room_expired") {
         roomExpired = true;
+        wsClient.destroy();
+        wsReady = false;
         return;
       }
       const local = storageLoad();

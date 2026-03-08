@@ -1,9 +1,9 @@
-# v1.0.2 
+# v1.0.3 
 
-- Improved room creation error handling with UI display and API response validation.
-- Improved error handling for expired rooms.
-- Improved error handling for failed room creation.
+- Added CORS headers to health check endpoint for better compatibility with Cloudflare Workers deployment
+- Updated .gitignore to exclude all backend build artifacts, including synclippy and synclippy-macos binaries
+- Bumped version to 1.0.3 in worker and frontend package.json files
 
-For the initial stable release, see [v1.0.1](https://github.com/ujjwalvivek/synclippy/releases/tag/v1.0.1).
+For the initial stable release, see [v1.0.2](https://github.com/ujjwalvivek/synclippy/releases/tag/v1.0.2).
 
 Read more about the project in the [README](README.md) and the API in [API.md](docs/API.md).

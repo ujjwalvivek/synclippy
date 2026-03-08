@@ -76,6 +76,14 @@ export default {
       return new Response(null, { status: 204, headers: CORS })
     }
 
+    // ? GET /healthz is used by monitors and must return CORS-enabled JSON.
+    if (path === '/healthz' && request.method === 'GET') {
+      return new Response(JSON.stringify({ status: 'ok' }), {
+        status: 200,
+        headers: { ...CORS, 'Content-Type': 'application/json' },
+      })
+    }
+
     // ? GET /auth?t=<token> serves auto-POST page
     if (path === '/auth' && request.method === 'GET') {
       const token = url.searchParams.get('t') ?? ''

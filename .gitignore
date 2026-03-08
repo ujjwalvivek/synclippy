@@ -32,6 +32,8 @@ notepad-dist/
 # Synclippy build artifacts
 backend/server
 backend/server-macos
+backend/synclippy
+backend/synclippy-macos
 backend/dist/
 backend/package-lock.json
 
@@ -41,6 +43,7 @@ worker/public/
 backend/dist/
 backend/server
 backend/server.exe
+backend/synclippy.exe
 worker/node_modules
 
 # Frontend build artifacts

@@ -6,13 +6,17 @@
         "**/dist": true,
         "**/*-lock.json": true,
         "**/backend/server": true,
-        "**/backend/server.exe": true
+        "**/backend/server.exe": true,
+        "**/backend/server-macos": true,
+        "**/backend/synclippy": true
     },
     "files.watcherExclude": {
         "**/node_modules/**": true,
         "**/dist/**": true,
         "**/*-lock.json": true,
         "**/backend/server": true,
-        "**/backend/server.exe": true
+        "**/backend/server.exe": true,
+        "**/backend/server-macos": true,
+        "**/backend/synclippy": true
     }
 }

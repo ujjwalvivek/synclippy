@@ -326,6 +326,9 @@ func main() {
 
 // ? GET /healthz used by Docker HEALTHCHECK, k8s liveness probes, uptime monitors.
 func healthzHandler(w http.ResponseWriter, r *http.Request) {
+	// mirror the CORS policy used by the API endpoints so the browser
+	// can successfully probe the service from a different origin.
+	w.Header().Set("Access-Control-Allow-Origin", "*")
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
 	w.Write([]byte(`{"status":"ok"}`))
